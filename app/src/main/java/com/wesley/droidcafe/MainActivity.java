@@ -15,6 +15,11 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    //Tag for intent
+    public static final String EXTRA_MESSAGE = "com.wesley.droidcafe.extra.MESSAGE";
+
+    //The order message displayed in the toast and sent to the new Activity
+    private String mOrderMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(MainActivity.this, OrderActivity.class);
+                Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+
+                intent.putExtra(EXTRA_MESSAGE, mOrderMessage);
                 startActivity(intent);
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
@@ -65,16 +72,19 @@ public class MainActivity extends AppCompatActivity {
 
     //shows message that the donut image was clicked
     public void showDonutOrder(View view) {
+        mOrderMessage = getString(R.string.donut_order_message);
         displayToast(getString(R.string.donut_order_message));
     }
 
     //shows message that the ice cream sandwich image was clicked.
     public void showIceCreamOrder(View view) {
+        mOrderMessage = getString(R.string.ice_cream_order_message);
         displayToast(getString(R.string.ice_cream_order_message));
     }
 
     //shows message that the froyo image was clicked.
     public void showFroyoOrder(View view) {
+        mOrderMessage = getString(R.string.froyo_order_message);
         displayToast(getString(R.string.froyo_order_message));
     }
 }
