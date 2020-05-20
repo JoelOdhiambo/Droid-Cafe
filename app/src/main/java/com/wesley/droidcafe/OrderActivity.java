@@ -20,6 +20,13 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+
+        //Get the intent and its data
+        Intent intent = getIntent();
+        String message ="Order: "+intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        TextView textView = findViewById(R.id.order_textview);
+        textView.setText(message);
+
         //Create Spinner
         Spinner spinner=findViewById(R.id.label_spinner);
         if (spinner!=null){
@@ -33,11 +40,7 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
         if (spinner != null) {
             spinner.setAdapter(adapter);
         }
-        //Get the intent and its data
-        Intent intent = getIntent();
-        String message ="Order: "+intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        TextView textView = findViewById(R.id.order_textview);
-        textView.setText(message);
+
     }
 
     public void onRadioButtonClicked(View view) {
